@@ -112,3 +112,29 @@ public class MainActivity extends AppCompatActivity {
 Cụ thể, các điểm quan trọng trong đoạn mã là:
 
 - Class `DatePickerFragment` được khai báo là **public static**, cho phép truy cập từ bên ngoài lớp MainActivity mà không cần tạo một phiên bản mới của MainActivity.
+- Class này triển khai giao diện `DatePickerDialog.OnDateSetListener`, cho phép nó lắng nghe sự kiện khi ngày được chọn trong `DatePickerDialog`.
+- Trong phương thức `onCreateDialog()`, `DatePickerDialog` được tạo và trả về. `DatePickerDialog` này có các tham số:
+  - **getActivity():** Được sử dụng để lấy tham chiếu đến hoạt động chứa Fragment (trong trường hợp này là MainActivity).
+  - **this:** Đối tượng hiện tại (DatePickerFragment) được chuyển làm đối số để lắng nghe sự kiện ngày được chọn trong DatePickerDialog.
+  - **year**, **month**, **day**: Các giá trị để đặt ngày mặc định trong DatePickerDialog. Trong trường hợp này, ngày mặc định được đặt là ngày hiện tại.
+
+Phương thức onDateSet() là một phương thức rỗng trong ví dụ này. Bạn có thể thêm xử lý sự kiện vào phương thức này để xử lý ngày được chọn trong DatePickerDialog. Khi ngày được chọn, phương thức này sẽ được gọi và bạn có thể thực hiện các thao tác tương ứng với ngày được chọn.
+
+### 4.3. Cập nhật ngày được chọn vào TextView:
+
+```java
+public void updateDOB(LocalDate dob){
+    TextView dobControl = findViewById(R.id.dob_control);
+    dobControl.setText(dob.toString());
+}
+```
+
+### 4.4. Sử dụng hàm `onDateSet` trong fragment:
+
+```java
+@Override
+public void onDateSet(DatePicker datePicker, int year, int month, int day){
+    LocalDate dob = LocalDate.of(year, ++month, day);
+    ((MainActivity)getActivity()).updateDOB(dob);
+}
+```

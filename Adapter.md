@@ -72,7 +72,7 @@ String[] data = new String[] {"Item 1", "Item 2", "Item 3"};
 - **Bước 2:** **Khởi tạo ArrayAdapter** Tạo một object ArrayAdapter, có params là: **Context**, **một layout cho mỗi item trong danh sách** (có thể sử dụng layout có sẵn như android.R.layout.simple_list_item_1), và list hoặc mảng dữ liệu.
 
 ```java
-ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, data);
+ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, data);
 ```
 
 - **Bước 3:** **Liên kết ArrayAdapter với ListView hoặc Spinner** Tìm và liên kết `ArrayAdapter` với thành phần giao diện `ListView` hoặc `Spinner` trong XML hoặc trong mã Java.
